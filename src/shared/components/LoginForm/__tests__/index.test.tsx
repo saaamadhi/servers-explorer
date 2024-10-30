@@ -2,7 +2,8 @@ import { render, screen } from '@testing-library/react';
 import LoginForm from '..';
 
 vi.mock('@mui/material', async () => {
-  const actual = await vi.importActual<any>('@mui/material');
+  const actual =
+    await vi.importActual<typeof import('@mui/material')>('@mui/material');
   return {
     ...actual,
     useTheme: vi.fn().mockImplementation(actual.useTheme),
@@ -14,7 +15,7 @@ describe('Login Form component', () => {
 
   const defaultProps = {
     onSubmit,
-    error: '',
+    errorMessage: '',
   };
 
   afterAll(() => {
@@ -22,13 +23,17 @@ describe('Login Form component', () => {
   });
 
   it('should render component', () => {
-    render(<LoginForm {...defaultProps} />);
+    render(<LoginForm {...defaultProps} isError={false} />);
     expect(screen).toMatchSnapshot();
   });
 
   it('should show error if credentials not valid', () => {
     render(
-      <LoginForm {...defaultProps} error='Please, check your credentials.' />,
+      <LoginForm
+        {...defaultProps}
+        errorMessage='Please, check your credentials.'
+        isError={true}
+      />,
     );
     const error = screen.getByTestId('login-error');
 

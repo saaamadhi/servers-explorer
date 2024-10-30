@@ -32,7 +32,7 @@ const Login = () => {
     if (isAuthenticated) {
       navigate('/');
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, navigate]);
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

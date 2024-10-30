@@ -2,7 +2,8 @@ import { render, screen } from '@testing-library/react';
 import Spinner from '..';
 
 vi.mock('@mui/material', async () => {
-  const actual = await vi.importActual<any>('@mui/material');
+  const actual =
+    await vi.importActual<typeof import('@mui/material')>('@mui/material');
   return {
     ...actual,
     useTheme: vi.fn().mockImplementation(actual.useTheme),

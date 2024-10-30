@@ -1,17 +1,20 @@
-import { render, screen } from '@testing-library/react';
 import { useQuery } from '@tanstack/react-query';
+import { render, screen } from '@testing-library/react';
 import { Mock } from 'vitest';
 import ServerList from '..';
 
 vi.mock('@mui/material', async () => {
-  const actual = await vi.importActual<any>('@mui/material');
+  const actual =
+    await vi.importActual<typeof import('@mui/material')>('@mui/material');
   return {
     ...actual,
     useTheme: vi.fn().mockImplementation(actual.useTheme),
   };
 });
 vi.mock('@tanstack/react-query', async () => {
-  const actual = await vi.importActual<any>('@tanstack/react-query');
+  const actual = await vi.importActual<typeof import('@tanstack/react-query')>(
+    '@tanstack/react-query',
+  );
   return {
     ...actual,
     useQuery: vi.fn(),

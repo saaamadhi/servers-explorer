@@ -1,17 +1,21 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { useNavigate } from 'react-router-dom';
 import { Mock } from 'vitest';
 import Header from '..';
 
 vi.mock('@mui/material', async () => {
-  const actual = await vi.importActual<any>('@mui/material');
+  const actual =
+    await vi.importActual<typeof import('@mui/material')>('@mui/material');
   return {
     ...actual,
     useTheme: vi.fn().mockImplementation(actual.useTheme),
   };
 });
 vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual<any>('@mui/material');
+  const actual =
+    await vi.importActual<typeof import('react-router-dom')>(
+      'react-router-dom',
+    );
   return {
     ...actual,
     useNavigate: vi.fn(),

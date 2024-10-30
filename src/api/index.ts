@@ -14,8 +14,12 @@ const login = async (data: AuthenticateUserData) => {
     );
 
     return responseData;
-  } catch (error: any) {
-    throw error?.response?.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      throw error.response.data;
+    } else {
+      throw new Error('An unexpected error occurred');
+    }
   }
 };
 
@@ -24,8 +28,12 @@ const getServers = async () => {
     const { data } = await axios.get<GetServersResponse>(serversUrl);
 
     return data;
-  } catch (error: any) {
-    throw error?.response?.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      throw error.response.data;
+    } else {
+      throw new Error('An unexpected error occurred');
+    }
   }
 };
 
