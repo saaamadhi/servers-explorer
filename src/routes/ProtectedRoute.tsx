@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
-import { Outlet, Navigate, useNavigate } from 'react-router-dom';
-import { TOKEN } from '../shared/utils';
+import { Navigate, Outlet, useNavigate } from 'react-router-dom';
 import Header from '../shared/components/Header';
+import { TOKEN } from '../shared/utils';
 
 const ProtectedRoute = () => {
   const navigate = useNavigate();
