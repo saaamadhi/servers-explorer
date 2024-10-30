@@ -1,7 +1,7 @@
-import { FormEvent } from 'react';
-import { Paper, Typography, Box, useTheme } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Box, Paper, Typography, useTheme } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
+import { FormEvent, useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { login } from '../../api';
 import LoginForm from '../../shared/components/LoginForm';
 import Spinner from '../../shared/components/Spinner';
@@ -25,6 +25,14 @@ const Login = () => {
     mutationKey: ['authentication'],
     mutationFn: (args) => login(args),
   });
+
+  const isAuthenticated = useMemo(() => !!localStorage.getItem(TOKEN), []);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
+  }, [isAuthenticated]);
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
