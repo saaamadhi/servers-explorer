@@ -2,9 +2,9 @@
 import axios from 'axios';
 import { CompareFunction } from './types';
 
-export const baseUrl = 'https://playground.tesonet.lt/v1';
-export const loginUrl = `${baseUrl}/tokens`;
-export const serversUrl = `${baseUrl}/servers`;
+export const BASE_URL = 'https://playground.tesonet.lt/v1';
+export const LOGIN_URL = `${BASE_URL}/tokens`;
+export const SERVERS_URL = `${BASE_URL}/servers`;
 
 export const TOKEN = 'token';
 

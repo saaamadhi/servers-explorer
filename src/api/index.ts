@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { loginUrl, serversUrl } from '../shared/utils';
+import { LOGIN_URL, SERVERS_URL } from '../shared/utils';
 import {
   AuthenticateUserData,
   AuthenticateUserResponse,
@@ -9,7 +9,7 @@ import {
 const login = async (data: AuthenticateUserData) => {
   try {
     const { data: responseData } = await axios.post<AuthenticateUserResponse>(
-      loginUrl,
+      LOGIN_URL,
       data,
     );
 
@@ -25,7 +25,7 @@ const login = async (data: AuthenticateUserData) => {
 
 const getServers = async () => {
   try {
-    const { data } = await axios.get<GetServersResponse>(serversUrl);
+    const { data } = await axios.get<GetServersResponse>(SERVERS_URL);
 
     return data;
   } catch (error) {
