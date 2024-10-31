@@ -1,11 +1,12 @@
-import { FC, FormEvent } from 'react';
 import {
-  FormControl,
   Button,
+  FormControl,
+  FormLabel,
   TextField,
   Typography,
   useTheme,
 } from '@mui/material';
+import { FC, FormEvent } from 'react';
 
 type LoginFormProps = {
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
@@ -47,29 +48,34 @@ const LoginForm: FC<LoginFormProps> = ({ onSubmit, errorMessage, isError }) => {
         </Typography>
       )}
       <FormControl fullWidth>
-        <Typography variant='caption' color={theme.palette.secondary.dark}>
-          Username
-        </Typography>
+        <FormLabel htmlFor='username'>
+          <Typography variant='caption' color={theme.palette.secondary.dark}>
+            Username
+          </Typography>
+        </FormLabel>
         <TextField
+          autoComplete='username'
           id='username'
           name='username'
+          placeholder='Enter username'
           data-testid='login-username'
           type='text'
-          placeholder='Enter username'
           required
         />
       </FormControl>
       <FormControl fullWidth>
-        <Typography variant='caption' color={theme.palette.secondary.dark}>
-          Password
-        </Typography>
+        <FormLabel htmlFor='password'>
+          <Typography variant='caption' color={theme.palette.secondary.dark}>
+            Password
+          </Typography>
+        </FormLabel>
         <TextField
           id='password'
           name='password'
           data-testid='login-password'
           type='password'
-          autoComplete='off'
           placeholder='Enter password'
+          autoComplete='current-password'
           required
         />
       </FormControl>
